@@ -1,0 +1,8 @@
+,Id_x,EmployeeID,FullName,BirthDate,Address,Id_y,PosID,PosTitle,StartDate,EndDate
+0,1,10105001,Ali Anton,1982-08-19,Jakarta Utara,1,50000,IT Manager,1/1/2022,2/28/2022
+1,1,10105001,Ali Anton,1982-08-19,Jakarta Utara,2,50001,IT Sr. Manager,3/1/2022,12/31/2022
+2,2,10105002,Rara Siva,1982-01-01,Mandalika,3,50002,Programmer Analyst,1/1/2022,2/28/2022
+3,2,10105002,Rara Siva,1982-01-01,Mandalika,4,50003,Sr. Programmer Analyst,3/1/2022,12/31/2022
+4,3,10105003,Rini Aini,1982-02-20,Sumbawa Besar,5,50004,IT Admin,1/1/2022,2/28/2022
+5,3,10105003,Rini Aini,1982-02-20,Sumbawa Besar,6,50005,IT Secretary,3/1/2022,12/31/2022
+6,4,10105004,Budi,1982-02-22,Mataram Kota,,,,,

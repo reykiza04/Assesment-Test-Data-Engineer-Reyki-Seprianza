@@ -1,0 +1,72 @@
+1.
+CREATE TABLE Employee (
+    Id INTEGER PRIMARY KEY,
+    EmployeeId VARCHAR(10) UNIQUE NOT NULL,
+    FullName VARCHAR(100) NOT NULL,
+    BirthDate DATE NOT NULL,
+    Address VARCHAR(500)
+);
+
+CREATE TABLE PositionHistory (
+    Id INTEGER PRIMARY KEY,
+    PosId VARCHAR(10) NOT NULL,
+    PosTitle VARCHAR(100) NOT NULL,
+    EmployeeId VARCHAR(10) NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL
+);
+
+
+
+2.
+-- Insert data into Employee Table
+INSERT INTO Employee (Id, EmployeeID, FullName, BirthDate, Address)
+VALUES
+    (1, '10105001', 'Ali Anton', '1982-08-19', 'Jakarta Utara'),
+    (2, '10105002', 'Rara Siva', '1982-01-01', 'Mandalika'),
+    (3, '10105003', 'Rini Aini', '1982-02-20', 'Sumbawa Besar'),
+    (4, '10105004', 'Budi', '1982-02-22', 'Mataram Kota');
+
+-- Insert data into PositionHistory Table
+INSERT INTO PositionHistory (Id, PosId, PosTitle, EmployeeID, StartDate, EndDate)
+VALUES
+    (1, '50000', 'IT Manager', '10105001', '2022-01-01', '2022-02-28'),
+    (2, '50001', 'IT Sr. Manager', '10105001', '2022-03-01', '2022-12-31'),
+    (3, '50002', 'Programmer Analyst', '10105002', '2022-01-01', '2022-02-28'),
+    (4, '50003', 'Sr. Programmer Analyst', '10105002', '2022-03-01', '2022-12-31'),
+    (5, '50004', 'IT Admin', '10105003', '2022-01-01', '2022-02-28'),
+    (6, '50005', 'IT Secretary', '10105003', '2022-03-01', '2022-12-31');
+
+
+
+
+3. select
+	distinct (E.EmployeeId),
+    E.FullName,
+    DATE(E.BirthDate) AS BirthDate,
+    E.Address,
+    P.PosId,
+    P.PosTitle,
+    P.StartDate,
+    P.EndDate
+FROM
+    attn.result_amman E
+inner JOIN
+    attn.result_amman P ON E.EmployeeId = P.EmployeeId
+inner JOIN
+    (
+        SELECT
+            EmployeeId,
+            MAX(StartDate) AS MaxStartDate
+        FROM
+            attn.result_amman
+        GROUP BY
+            EmployeeId
+    ) AS MaxStartDateSubquery ON P.EmployeeId = MaxStartDateSubquery.EmployeeId
+                                AND P.StartDate = MaxStartDateSubquery.MaxStartDate;
+
+
+Result -> 
+10105001	Ali Anton	1982-08-19	Jakarta Utara	50001	IT Sr. Manager	3/1/2022	12/31/2022
+10105002	Rara Siva	1982-01-01	Mandalika	50003	Sr. Programmer Analyst	3/1/2022	12/31/2022
+10105003	Rini Aini	1982-02-20	Sumbawa Besar	50005	IT Secretary	3/1/2022	12/31/2022
